@@ -1,15 +1,15 @@
-// get data 
-db.collection('guides')
-    .get()
-    .then(snapshot => {
-        setupGuides(snapshot.docs)
-})
+
 
 
 // status changes 
 
 auth.onAuthStateChanged(user => {
-    user ? console.log('user logged in', user) : console.log('user logged out')
+    user ? // get data 
+    db.collection('guides')
+        .get()
+        .then(snapshot => {
+            setupGuides(snapshot.docs)
+    }) : setupGuides([])
 })
 
 
